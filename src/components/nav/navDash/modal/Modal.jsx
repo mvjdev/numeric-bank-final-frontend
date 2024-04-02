@@ -12,7 +12,6 @@ const Modal = ({ isOpen, onClose, account }) => {
   };
 
   const handleSubmit = (e) => {
-    console.log("PUT", formData);
     e.preventDefault();
     dispatch({ type: "account/put", payload: formData });
     updateAccount(formData);
@@ -70,7 +69,7 @@ const Modal = ({ isOpen, onClose, account }) => {
             type="text"
             name="accountNumber"
             value={formData.accountNumber}
-            readOnly
+            onChange={handleChange}
             placeholder="Account Number"
             className="input"
           />
