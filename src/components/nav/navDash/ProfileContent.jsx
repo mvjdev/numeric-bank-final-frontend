@@ -1,40 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import { BiWallet, BiDollar, BiIntersect } from "react-icons/bi";
 import "../../nav/navDashCss/content.css";
 import { Button } from "@material-tailwind/react";
 import PieChartBalance from "../../piechart/PieChartBalance";
+import { useMyContext } from "../../../context/AppContext";
 
 const ProfileContent = () => {
-  const accountDetails = {
-    balance: 1000,
-    loans: [
-      { amount: 500, term: "1 an" },
-      { amount: 300, term: "2 ans" },
-    ],
-    loanInterest: 5,
-  };
-
+  const { fetchDataBalance, accounts, balances, loader, error } =
+    useMyContext();
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  useEffect(() => {
+    fetchDataBalance();
+  }, []);
 
   const handleValueChange = (newValue) => {
     setSelectedDate(newValue);
   };
 
-  // Calculer les valeurs pour le graphique
-  const totalLoans = accountDetails.loans.reduce(
-    (total, loan) => total + loan.amount,
-    0
-  );
+  // Assuming you want to display the first account's details for simplicity
+  const accountDetails = accounts && accounts.length > 0 ? accounts[0] : {};
+  const balanceDetails = balances && balances.length > 0 ? balances[0] : {};
+
+  // Calculate values for the pie chart based on the first account's details
+  const totalLoans = accountDetails.loanAmount || 0;
   const totalValue =
-    accountDetails.balance +
+    accountDetails.mainBalance +
     totalLoans +
     (totalLoans * accountDetails.loanInterest) / 100;
 
   const pieChartData = [
     {
       name: "Solde Principal",
-      value: accountDetails.balance,
+      value: accountDetails.mainBalance,
       color: "#8884d8",
     },
     {
@@ -61,7 +60,7 @@ const ProfileContent = () => {
               </div>
               <div className="p-4">
                 <p className="text-gray-700 text-lg">
-                  {accountDetails.balance}
+                  {accountDetails.mainBalance}
                 </p>
               </div>
             </div>
@@ -77,7 +76,7 @@ const ProfileContent = () => {
               </div>
               <div className="p-4">
                 <p className="text-gray-700 text-lg">
-                  {accountDetails.loans.length}
+                  {accountDetails.loanAmount}
                 </p>
               </div>
             </div>
