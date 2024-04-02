@@ -170,24 +170,88 @@
       "net_monthly_pay": "13121",
       "overdraft_allowed": "true",
       "account_number": "77777700"
+    }
+  ],
+  "balances": [
+    {
+      "id": 1,
+      "mainBalance": 3500.0,
+      "loanInterest": 0.0,
+      "loanAmount": 0.0,
+      "balanceDatetime": "2024-04-02T06:30:15.641238",
+      "idAccount": 1
     },
     {
-      "id": "e059",
-      "firstname": "Manoa",
-      "lastname": "Lahatra",
-      "birthdate": "2024-02-02",
-      "net_monthly_pay": "13121",
-      "overdraft_allowed": "false",
-      "account_number": "8899"
+      "id": 2,
+      "mainBalance": 4500.0,
+      "loanInterest": 5.0,
+      "loanAmount": 500.0,
+      "balanceDatetime": "2024-04-02T06:30:15.641238",
+      "idAccount": 2
     },
     {
-      "id": "7945",
-      "firstname": "",
-      "lastname": "",
-      "birthdate": "",
-      "net_monthly_pay": "",
-      "overdraft_allowed": "",
-      "account_number": ""
+      "id": 3,
+      "mainBalance": 3000.0,
+      "loanInterest": 0.0,
+      "loanAmount": 0.0,
+      "balanceDatetime": "2024-04-02T06:30:15.641238",
+      "idAccount": 3
+    },
+    {
+      "id": 4,
+      "mainBalance": 4000.0,
+      "loanInterest": 4.0,
+      "loanAmount": 400.0,
+      "balanceDatetime": "2024-04-02T06:30:15.641238",
+      "idAccount": 4
+    },
+    {
+      "id": 5,
+      "mainBalance": 5000.0,
+      "loanInterest": 0.0,
+      "loanAmount": 0.0,
+      "balanceDatetime": "2024-04-02T06:30:15.641238",
+      "idAccount": 5
+    },
+    {
+      "id": 6,
+      "mainBalance": 3500.0,
+      "loanInterest": 3.5,
+      "loanAmount": 350.0,
+      "balanceDatetime": "2024-04-02T06:30:15.641238",
+      "idAccount": 6
+    },
+    {
+      "id": 7,
+      "mainBalance": 4500.0,
+      "loanInterest": 0.0,
+      "loanAmount": 0.0,
+      "balanceDatetime": "2024-04-02T06:30:15.641238",
+      "idAccount": 7
+    },
+    {
+      "id": 8,
+      "mainBalance": 4000.0,
+      "loanInterest": 4.0,
+      "loanAmount": 400.0,
+      "balanceDatetime": "2024-04-02T06:30:15.641238",
+      "idAccount": 8
+    },
+    {
+      "id": 9,
+      "mainBalance": 4500.0,
+      "loanInterest": 0.0,
+      "loanAmount": 0.0,
+      "balanceDatetime": "2024-04-02T06:30:15.641238",
+      "idAccount": 9
+    },
+    {
+      "id": 10,
+      "mainBalance": 5000.0,
+      "loanInterest": 5.0,
+      "loanAmount": 500.0,
+      "balanceDatetime": "2024-04-02T06:30:15.641238",
+      "idAccount": 10
     }
   ]
 }
