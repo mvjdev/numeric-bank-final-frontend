@@ -1,4 +1,9 @@
-import { fetchAccount, postAccount, putAccount } from "../services/ApiAcount";
+import {
+  fetchAccount,
+  postAccount,
+  putAccount,
+  fetchBalance,
+} from "../services/ApiAcount";
 
 import { createContext, useReducer, useEffect, useContext } from "react";
 
@@ -6,6 +11,7 @@ const AppContext = createContext();
 
 const initialState = {
   accounts: [],
+  balances: [],
   loader: true,
   error: "",
 };
@@ -32,6 +38,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         accounts: updatedAccounts,
+      };
+
+    case "balance/get":
+      return {
+        ...state,
+        balances: action.payload,
       };
 
     case "loader":
@@ -68,6 +80,7 @@ export default function AppProvider({ children }) {
   };
 
   const createAccount = async (account) => {
+    console.log(account.id);
     try {
       dispatch({ type: "loader", payload: true });
       const newAccount = await postAccount(account);
@@ -91,6 +104,23 @@ export default function AppProvider({ children }) {
     }
   };
 
+  const fetchDataBalance = async () => {
+    try {
+      dispatch({ type: "loader", payload: true });
+      const data = await fetchAccount();
+      dispatch({ type: "account/get", payload: data });
+
+      const balancePromises = data.map((account) => fetchBalance(account.id));
+      const balances = await Promise.all(balancePromises);
+      dispatch({ type: "balance/get", payload: balances });
+
+      dispatch({ type: "loader", payload: false });
+    } catch (error) {
+      dispatch({ type: "error", payload: error.data || error.message });
+      dispatch({ type: "loader", payload: false });
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -104,6 +134,7 @@ export default function AppProvider({ children }) {
         dispatch,
         createAccount,
         updateAccount,
+        fetchDataBalance,
       }}
     >
       {children}
