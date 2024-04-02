@@ -1,0 +1,107 @@
+/* accountform.css */
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+
+.modal {
+ font-family: 'Fira Sans', sans-serif;
+ background-color: #222;
+ border-radius: 15px;
+ height: 500px; /* Augmentez la hauteur si nécessaire */
+ width: 350px;
+ position: relative;
+ overflow: hidden;
+}
+
+.modal::after {
+ content: '';
+ opacity: .8;
+ position: absolute;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ left: 0;
+ background-repeat: no-repeat;
+ background-position: left bottom;
+ background-size: 500px;
+}
+
+.modal-content {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 65%;
+ z-index: 5;
+ transition: all .3s ease;
+}
+
+.modal-content .form-title {
+ color: #fff;
+ font-size: 1.7em;
+ text-align: center;
+}
+
+/* Styles pour les champs de saisie */
+.modal-content .form-holder .input {
+    background-color: #fff;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 1.3rem; 
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 500;
+    color: #3b3838;
+}
+
+.modal-content .form-holder .input::-webkit-input-placeholder {
+    color: rgba(0,0,0,0.4);
+}
+
+/* Styles pour le bouton de soumission */
+.modal-content .form-holder .submit-btn {
+    background-color: #526d82; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px 20px; /* Espacement interne */
+    cursor: pointer; /* Pointeur de clic */
+    font-size: 14px; /* Taille du texte */
+    font-weight: bold; /* Texte en gras */
+    justify-content: center;
+    transition: background-color 0.3s ease; /* Transition pour l'effet de survol */
+}
+
+.modal-content .form-holder .submit-btn:hover {
+    background-color:  #1cb740;
+}
+
+.modal-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.5);
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.modal-content {
+ background-color: white;
+ padding: 20px;
+ border-radius: 10px;
+ width: 80%;
+ max-width: 500px;
+}
+
+.close-icon {
+ position: absolute;
+ top: 10px;
+ right: 10px;
+ cursor: pointer;
+}

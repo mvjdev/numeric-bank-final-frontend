@@ -1,0 +1,7 @@
+.button--add{
+    justify-content: flex-end;
+    align-items: end;
+    padding: 4rem;
+    padding-left: 55rem;
+    font-size: 0.8rem;
+}

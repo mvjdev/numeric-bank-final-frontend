@@ -1,0 +1,6 @@
+.content--dashboard{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
