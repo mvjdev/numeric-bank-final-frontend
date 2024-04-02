@@ -5,14 +5,13 @@ import Loader from "./Loader";
 import image from "../../../assets/profil.jpeg";
 import { BiEdit } from "react-icons/bi";
 import Modal from "./modal/Modal";
-
 export default function AccountList() {
   const { accounts, loader } = useMyContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState(null);
 
   const openModal = (account, e) => {
-    e.stopPropagation(); // Empêcher la propagation de l'événement de clic
+    e.stopPropagation();
     setSelectedAccount(account);
     setIsModalOpen(true);
   };
@@ -20,24 +19,6 @@ export default function AccountList() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
-  {
-    accounts?.map((account) => {
-      if (account) {
-        console.log(
-          account.id,
-          account.firstname,
-          account.lastname,
-          account.birthdate,
-          account.netMonthlyPay,
-          account.overdraftAllowed,
-          account.accountNumber
-        );
-      }
-    });
-  }
-
-  console.log("Loader:", loader);
 
   return (
     <div className="account--list">
@@ -72,39 +53,41 @@ export default function AccountList() {
               </tr>
             ) : (
               <>
-                {accounts.slice(1).map((account) => (
-                  <tr
-                    key={account.id}
-                    style={{ cursor: "pointer" }}
-                    className="list"
-                    onClick={() =>
-                      (window.location.href = `/profil/${account.id}`)
-                    }
-                  >
-                    <td className="account--detail">
-                      <img src={image} alt="Profile" />
-                    </td>
-                    <td>{account.firstname}</td>
-                    <td>{account.lastname}</td>
-                    <td>{account.birthdate}</td>
-                    <td>{account.netMonthlyPay}</td>
-                    <td>
-                      {account.overdraftAllowed ? "Allowed" : "Not Allowed"}
-                    </td>
-                    <td>{account.accountNumber}</td>
-                    <td>
-                      <BiEdit
-                        className="w-5 h-5"
-                        onClick={(e) => openModal(account, e)}
-                      />
-                    </td>
-                  </tr>
-                ))}
+                {accounts
+                  ?.filter((account) => account)
+                  .map((account) => (
+                    <tr
+                      key={account.id}
+                      style={{ cursor: "pointer" }}
+                      className="list"
+                      onClick={() =>
+                        (window.location.href = `/profil/${account.id}`)
+                      }
+                    >
+                      <td className="account--detail">
+                        <img src={image} alt="Profile" />
+                      </td>
+                      <td>{account.firstname}</td>
+                      <td>{account.lastname}</td>
+                      <td>{account.birthdate}</td>
+                      <td>{account.netMonthlyPay}</td>
+                      <td>
+                        {account.overdraftAllowed ? "Allowed" : "Not Allowed"}
+                      </td>
+                      <td>{account.accountNumber}</td>
+                      <td>
+                        <BiEdit
+                          className="w-5 h-5"
+                          onClick={(e) => openModal(account, e)}
+                        />
+                      </td>
+                    </tr>
+                  ))}
                 {isModalOpen && (
                   <Modal
                     isOpen={isModalOpen}
                     onClose={closeModal}
-                    account={selectedAccount} // Passez l'objet account sélectionné au composant Modal
+                    account={selectedAccount}
                   />
                 )}
               </>
