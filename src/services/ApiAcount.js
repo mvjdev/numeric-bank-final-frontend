@@ -51,4 +51,19 @@ const putAccount = async (account) =>{
     }
 }
 
-export { fetchAccount,postAccount,putAccount };
+const fetchBalance = async (accountId) => {
+    try {
+        const res = await fetch(`${API_URL}/accounts/${accountId}/balance`);
+        if (!res.ok) {
+            throw new Error('Error fetching balance');
+        }
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+};
+
+
+export { fetchAccount,postAccount,putAccount,fetchBalance };
